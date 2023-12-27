@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELSA</title>
+</head>
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    header {
+        background-color: #4caf50;
+        padding: 1.5rem;
+        text-align: center;
+        color: white;
+    }
+
+    nav {
+        background-color: #333;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+    }
+
+    nav a:hover {
+        background-color: #4caf50;
+        color: white;
+    }
+
+    .box1 {
+        padding: 1rem;
+        text-align: center;
+        background-color: #4caf50;
+        color: white;
+        width: 50%;
+        float: left;
+    }
+
+
+
+    .box3 {
+        padding: 1rem;
+        text-align: start;
+        background-color: #4caf50;
+        color: white;
+        width: 25%;
+        float: left;
+        box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .box4 {
+
+        text-align: center;
+        background-color: #4caf50;
+        color: white;
+        width: 50%;
+        float: left;
+    }
+
+    .box5 {
+        padding: 1rem;
+        text-align: center;
+        background-color: #4caf50;
+        color: white;
+        width: 50%;
+        float: left;
+    }
+
+    .box11, .box12, .box13, .box14, .box15, .box16 {
+        width: 31.5%;
+        height: 15vh;
+        background: white;
+        box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        text-align: center;
+
+        margin: 4px;
+        bottom: 0;
+
+        float: right;
+        box-sizing: border-box;
+
+    }
+
+    .box11:hover, .box12:hover, .box13:hover, .box14:hover, .box15:hover, .box16:hover {
+        background-color: #969090;
+    }
+    .box3 a:hover {
+        background-color: #969090;
+
+    }
+</style>
+<body>
+
+<header>
+    <h1>La meilleure façon de planifier</h1>
+</header>
+<nav>
+
+    <a class="logo" th:src="@{./image/box33.jpg}" ><h1> ELSA </h1></a>
+    <a th:href="@{'/inscription'}">Se connecter/ S'inscrire</a>
+    <a th:href="@{'/agenda'}">Agenda</a>
+    <a th:href="@{'/contact'}">Nous Contacter</a>
+    <a th:href="@{'/propos'}">À propos de nous</a>
+    <a th:href="@{'/profile'}">Administrateur </a>
+
+</nav>
+
+<section>
+    <div class="box1"> <h1>Adieu aux rendez-vous oubliés </h1>
+
+        <img th:src="@{/image/box110.png}" alt="photo" width="400" />
+        <br>
+
+        <p>"Osez le changement ! Passez à l'efficacité numérique
+            <br>en remplaçant vos agendas papier par nos solutions d'agenda électronique.
+            <br>Le futur de la productivité commence ici.
+        </p>
+    </div>
+
+    <div class="box3"> <img th:src="@{/image/box33.jpg}" alt="photo" width="350">
+        <br>
+        <a th:href="@{'/agenda'}" > <ion-icon name="calendar"></ion-icon>    Agenda enligne</a>
+        <br>
+        <a th:href="@{'#'}"> <ion-icon name="create"></ion-icon>   creation d'un evenement</a>
+        <br>
+        <a th:href="@{'#'}"><ion-icon name="mail"></ion-icon>     notification</a>
+        <br>
+        <a th:href="@{'/profile'}"> <ion-icon name="person-circle"></ion-icon>   espace personel </a>
+
+    </div>
+    <div class="box4">
+
+        <a th:href="@{'#'}"><div class="box11"><h5>Construction & Renovation</h5><img th:src="@{/image/box11-1-mantenance.bmp }" alt="photo" width="50"> </div></a>
+        <a th:href="@{'#'}"><div class="box12"><h5>Shop</h5> <img th:src="@{/image/box12shop.bmp}" alt="photo" width="50"> </div></a>
+        <a th:href="@{'#'}"><div class="box13"> <h5>mecanique auto</h5><img th:src="@{/image/box13-car-locomotive.bmp}" alt="photo" width="50"></div></a>
+        <a th:href="@{'#'}"><div class="box14"><h5>Sante bien etre</h5> <img th:src="@{/image/box14helth-medical.bmp}" alt="photo" width="50"> </div></a>
+        <a th:href="@{'#'}"><div class="box15"><h5>restauration</h5> <img th:src="@{/image/box15-restauration.bmp}" alt="photo" width="50"> </div></a>
+        <a th:href="@{'#'}"> <div class="box16"> <h5>veterinaire</h5><img th:src="@{/image/box16-veterinaire.bmp}" alt="photo" width="50"> </div></a>
+
+    </div>
+    <div class="box5">
+        <p>Trouvez la magie dans chaque solution pour vos activités</p>
+        <img th:src="@{/image/box5.jpg}" alt="photo" >
+    <div>
+    </div>
+    </div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
