@@ -4,6 +4,7 @@ package com.projet.agenda.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name="event")
@@ -16,6 +17,8 @@ public class Event {
     @Column(length=150, nullable = false)
     private String titre;
 
+    @Temporal(TemporalType.DATE)  //use for TemporalType to handle date
+    private Date eventDate;
     @Column(length = 128, nullable = false, unique = true)
     private LocalDateTime heureDebut;
 
