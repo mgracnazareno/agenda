@@ -4,6 +4,7 @@ package com.projet.agenda.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -28,10 +29,10 @@ public class Event {
     @Temporal(TemporalType.DATE)  //use for TemporalType to handle date
     private Date eventDate;
     @Column(length = 128, nullable = false, unique = true)
-    private LocalDateTime heureDebut;
+    private LocalTime heureDebut;
 
     @Column(length = 128, nullable = false, unique = true)
-    private LocalDateTime heureFin;
+    private LocalTime heureFin;
 
     @Column(length = 128, nullable = false)
     private String lieu;
