@@ -17,6 +17,14 @@ public class Event {
     @Column(length=150, nullable = false)
     private String titre;
 
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+
     @Temporal(TemporalType.DATE)  //use for TemporalType to handle date
     private Date eventDate;
     @Column(length = 128, nullable = false, unique = true)
