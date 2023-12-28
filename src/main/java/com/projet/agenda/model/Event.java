@@ -18,13 +18,15 @@ public class Event {
     @Column(length=150, nullable = false)
     private String titre;
 
-
     @Temporal(TemporalType.DATE)  //use for TemporalType to handle date
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date eventDate;
+
+    @Temporal(TemporalType.TIME)
     @Column(length = 128, nullable = false, unique = true)
     private LocalTime heureDebut;
 
+    @Temporal(TemporalType.TIME)
     @Column(length = 128, nullable = false, unique = true)
     private LocalTime heureFin;
 

@@ -24,6 +24,7 @@
             <th>Heure de fin</th>
             <th>Lieu</th>
             <th>Commentaire</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,12 @@
             <td th:text="${events.heureFin}"></td>
             <td th:text="${events.lieu}"></td>
             <td th:text="${events.commentaire}"></td>
+            <!--Add update button Link-->
+            <td>
+              <a th:href="@{/events/showFormForUpdate(eventId=${events.id})}"
+                class="btn btn-info btn-sm">Update</a>
+            </td>
+
           </tr>
         </tbody>
       </table>

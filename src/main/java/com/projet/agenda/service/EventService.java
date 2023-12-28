@@ -89,11 +89,8 @@ public class EventService {
 
     public List<Event> getAllEvents(){return  eventRepo.findAllEvents();}
 
-
-    // Assuming you're receiving a date string from user input
-    String dateStringFromUser = "2023-12-25";
-
-
-
+    public Optional<Event> findByEventId(Integer id){
+        return eventRepo.findByEventId(id);
+    }
 
 }

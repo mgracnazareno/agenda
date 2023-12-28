@@ -27,9 +27,11 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     @Query("SELECT e FROM Event e WHERE e.titre LIKE %?1%")
     public List<Event> findAllByTitleContaining(String keyword);
     void deleteById(Integer eventId);
-//
-//    // Find event by ID
-//    Optional<Event> findById(Integer eventId);
+
+    // Find event by ID
+    //a method that find Event by Id
+    @Query("SELECT e FROM Event e WHERE e.id = :id")
+    public Optional<Event> findByEventId(@Param("id") Integer id);
 //
 //    //find event by Title
 //    Optional<Event> findByTitre(String keyword);

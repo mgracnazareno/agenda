@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/events")
@@ -33,6 +34,18 @@ public class EventController {
         Event event = new Event();
         model.addAttribute("event", event);
         return "/events/event-form";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("eventId") Integer id, Model model){
+        //get the event from the service
+        Optional<Event> event = eventService.findByEventId(id);
+
+        //set event in the model to prepopulate the form
+        model.addAttribute("event", event);
+        //send over to our form
+        return "events/event-form";
+
     }
 
     @PostMapping("/saveEvent")
