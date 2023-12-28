@@ -31,10 +31,7 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     //a method that find Event by Id
     @Query("SELECT e FROM Event e WHERE e.id = :id")
     public Optional<Event> findByEventId(@Param("id") Integer id);
-//
-//    //find event by Title
-//    Optional<Event> findByTitre(String keyword);
-//
+
     //find event by location
     List<Event> findByLieu(String lieu);
 //

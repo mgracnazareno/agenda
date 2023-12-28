@@ -50,17 +50,15 @@ public class UserService {
             throw new UserNotFoundException("On ne peut pas supprimer un user avec l'id: " + id);
         }
     }
-//    public List<User> findById(Integer id){
-//        Optional<User> result = repo.findById(id);
-//        User user = null;
-//        if(result.isPresent()){
-//            user = result.get();
-//        }else{
-//            // user with id is not found
-//            throw new RuntimeException("On ne peut pas trouver un utilisateur avec l'id " + id);
-//        }
-//        return user;
-//    }
 
+    public List<User> findByPrenomAndNom(String prenom){
+        return repo.findByNom(prenom);
+    }
+    public List<User> findByNom(String nom){
+        return repo.findByNom(nom);
+    }
 
+    public List<User> searchUsers(String prenom, String nom) {
+        return repo.findByPrenomContainingIgnoreCaseAndNomContainingIgnoreCase(prenom, nom);
+    }
 }

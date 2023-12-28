@@ -36,6 +36,15 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.id = :id")
     public Optional<User> findByUserId(@Param("id") Integer id);
 
+    @Query("SELECT u From User u WHERe u.prenom LIKE %:prenom%")
+    List<User> findByPrenom(@Param("prenom") String prenom);
 
+    @Query("SELECT u From User u WHERe u.nom LIKE %:nom%")
+    List<User> findByNom(@Param("nom") String nom);
+
+    List<User> findByPrenomContainingIgnoreCaseAndNomContainingIgnoreCase(String prenom, String nom);
+
+     @Query("SELECT u FROM User u JOIN u.roles r WHERE r.nom =?1")
+    public List<User> findAllByNomAndRoles(String nom);
 
 }

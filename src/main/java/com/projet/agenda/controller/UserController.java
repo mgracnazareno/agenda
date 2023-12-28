@@ -4,9 +4,11 @@ import com.projet.agenda.model.Role;
 import com.projet.agenda.model.User;
 import com.projet.agenda.service.UserNotFoundException;
 import com.projet.agenda.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,23 +53,31 @@ public class UserController {
 
         return "/users/user-form";
     }
-
     @GetMapping("/delete")
     public String delete(@RequestParam("userId") Integer id) throws UserNotFoundException {
         //delete user
         userService.deleteUserById(id);
         //redirect to the /users/list
         return "redirect:/users/list";
-
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute("user") User user){
+    public String saveUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes){
+        String fullName = user.getPrenom() + " " + user.getNom();
+        redirectAttributes.addFlashAttribute("message", "L'utilisateur: " + fullName + " a été ajouté avec success");
         //save the user
         userService.ajouterUser(user);
         //use a redirect to prevent duplicate submissions
         return "redirect:/users/list";
     }
+
+    @GetMapping("/search")
+    public String searchUsers(@RequestParam(value="keyword", required = false)String keyword, Model model){
+        List<User> listUsers = userService.findByPrenomAndNom(keyword);
+        model.addAttribute("listUsers", listUsers);
+        return "redirect:/users/list";
+    }
+
 
 
 }

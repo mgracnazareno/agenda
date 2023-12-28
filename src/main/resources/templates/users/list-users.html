@@ -15,44 +15,65 @@
        <a th:href="@{/users/showFormForAdd}"
             class="btn btn-primary btn-sm mb-3">
            Add User</a>
-       <table class="table table-bordered table-striped">
-           <thead class="table-dark">
-            <tr>
-                <th>Id</th>
-                <th>Photo</th>
-                <th>Prenom</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Active</th>
-                <th>Role</th>
-                <th>Action</th>
-            </tr>
-           </thead>
-           <tbody>
-                <tr th:each="users : ${listUsers}">
-                    <td th:text="${users.id}"></td>
-                    <td th:text="${users.nom}"></td>
-                    <td th:text="${users.prenom}"></td>
-                    <td th:text="${users.photo}"></td>
-                    <td th:text="${users.email}"></td>
-                    <td th:text="${users.active}"></td>
-                    <th th:text="${users.roles}"></th>
-                    <!--Add update button link-->
-                    <td>
-                        <a th:href="@{/users/showFormForUpdate(userId=${users.id})}"
-                            class="btn btn-info btn-sm">
-                            Update
-                        </a>
-                        <!-- Add "delete" button link-->
-                        <a th:href="@{/users/delete(userId=${users.id})}"
-                            class="btn btn-danger btn-sm"
-                            onclick="if(!(confirm('Voulez-vous supprimer cet User?'))) return false">
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-           </tbody>
-       </table>
+       <div th:if="${message !=null}" class="alert alert-success text-center" >
+           <p th:text="${message}"></p>
+
+       </div>
+       <!-- Search a user-->
+       <div>
+           <form action="/users/search" method="get" class="form-inline m-3" >
+                <label for="searchInput">Recherche un utilisateur:</label>
+               <input type="search" name="keyword" class="form-controle" required>
+               <button type="submit" id="searchInput" class="btn btn-primary">Recherche</button>
+               <button type="button" class="btn btn-secondary" onclick="clearSearch()">Annuler</button>
+           </form>
+       </div>
+       <div>
+           <table class="table table-bordered table-striped">
+               <thead class="table-dark">
+               <tr>
+                   <th>Id</th>
+                   <th>Photo</th>
+                   <th>Prenom</th>
+                   <th>Nom</th>
+                   <th>Email</th>
+                   <th>Active</th>
+                   <th>Role</th>
+                   <th>Action</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr th:each="users : ${listUsers}">
+                   <td th:text="${users.id}"></td>
+                   <td th:text="${users.nom}"></td>
+                   <td th:text="${users.prenom}"></td>
+                   <td th:text="${users.photo}"></td>
+                   <td th:text="${users.email}"></td>
+                   <td th:text="${users.active}"></td>
+                   <th th:text="${users.roles}"></th>
+                   <!--Add update button link-->
+                   <td>
+                       <a th:href="@{/users/showFormForUpdate(userId=${users.id})}"
+                          class="btn btn-info btn-sm">
+                           Update
+                       </a>
+                       <!-- Add "delete" button link-->
+                       <a th:href="@{/users/delete(userId=${users.id})}"
+                          class="btn btn-danger btn-sm"
+                          onclick="if(!(confirm('Voulez-vous supprimer cet User?'))) return false">
+                           Delete
+                       </a>
+                   </td>
+               </tr>
+               </tbody>
+           </table>
+       </div>
+
    </div>
+   <script>
+       function clearSearch(){
+           document.getElementById('search-input').value= '';
+       }
+   </script>
 </body>
 </html>

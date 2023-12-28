@@ -23,11 +23,11 @@ public class Event {
     private Date eventDate;
 
     @Temporal(TemporalType.TIME)
-    @Column(length = 128, nullable = false, unique = true)
+    @Column(length = 128, nullable = false)
     private LocalTime heureDebut;
 
     @Temporal(TemporalType.TIME)
-    @Column(length = 128, nullable = false, unique = true)
+    @Column(length = 128, nullable = false)
     private LocalTime heureFin;
 
     @Column(length = 128, nullable = false)
@@ -35,6 +35,9 @@ public class Event {
 
     @Column(length = 255)
     private String commentaire;
+
+    @Column(length = 255)
+    private String rappelMsg;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="user_id")
@@ -50,8 +53,6 @@ public class Event {
         this.lieu = lieu;
         this.commentaire = commentaire;
     }
-
-
 
     public Integer getId() {
         return id;
@@ -117,6 +118,13 @@ public class Event {
         this.createdBy = createBy;
     }
 
+    public String getRappelMsg() {
+        return rappelMsg;
+    }
+
+    public void setRappelMsg(String rappelMsg) {
+        this.rappelMsg = rappelMsg;
+    }
 
     @Override
     public int hashCode() {
