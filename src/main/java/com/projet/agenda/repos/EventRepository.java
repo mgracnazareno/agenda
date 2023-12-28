@@ -9,11 +9,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Integer> {
+public interface EventRepository extends CrudRepository<Event, Integer> {
 
     //a method that search the creator of an Event
     @Query("SELECT e.createdBy FROM Event e WHERE e.id= :id")
@@ -26,18 +27,18 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     @Query("SELECT e FROM Event e WHERE e.titre LIKE %?1%")
     public List<Event> findAllByTitleContaining(String keyword);
     void deleteById(Integer eventId);
-
-    // Find event by ID
-    Optional<Event> findById(Integer eventId);
-
-    //find event by Title
-    Optional<Event> findByTitre(String keyword);
-
+//
+//    // Find event by ID
+//    Optional<Event> findById(Integer eventId);
+//
+//    //find event by Title
+//    Optional<Event> findByTitre(String keyword);
+//
     //find event by location
     List<Event> findByLieu(String lieu);
-
+//
     //find event by DateRange
-    List<Event> findByHeureDebutBetween(LocalDateTime heureDebut, LocalDateTime heureFin);
+    List<Event> findByHeureDebutBetween(LocalTime heureDebut, LocalTime heureFin);
 
 
 }

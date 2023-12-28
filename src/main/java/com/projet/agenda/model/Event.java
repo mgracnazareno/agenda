@@ -2,8 +2,8 @@ package com.projet.agenda.model;
 
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -18,15 +18,9 @@ public class Event {
     @Column(length=150, nullable = false)
     private String titre;
 
-    public Date getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(Date eventDate) {
-        this.eventDate = eventDate;
-    }
 
     @Temporal(TemporalType.DATE)  //use for TemporalType to handle date
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date eventDate;
     @Column(length = 128, nullable = false, unique = true)
     private LocalTime heureDebut;
@@ -47,13 +41,14 @@ public class Event {
 
     public Event(){}
 
-    public Event(String titre, LocalDateTime heureDebut, LocalDateTime heureFin, String lieu, String commentaire){
+    public Event(String titre, LocalTime heureDebut, LocalTime heureFin, String lieu, String commentaire){
         this.titre = titre;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.lieu = lieu;
         this.commentaire = commentaire;
     }
+
 
 
     public Integer getId() {
@@ -72,19 +67,27 @@ public class Event {
         this.titre = titre;
     }
 
-    public LocalDateTime getHeureDebut() {
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+    public LocalTime getHeureDebut() {
         return heureDebut;
     }
 
-    public void setHeureDebut(LocalDateTime heureDebut) {
+    public void setHeureDebut(LocalTime heureDebut) {
         this.heureDebut = heureDebut;
     }
 
-    public LocalDateTime getHeureFin() {
+    public LocalTime getHeureFin() {
         return heureFin;
     }
 
-    public void setHeureFin(LocalDateTime heureFin) {
+    public void setHeureFin(LocalTime heureFin) {
         this.heureFin = heureFin;
     }
 
@@ -111,6 +114,7 @@ public class Event {
     public void setCreateBy(User createBy) {
         this.createdBy = createBy;
     }
+
 
     @Override
     public int hashCode() {

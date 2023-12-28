@@ -11,6 +11,9 @@
     <div class="container">
       <h3>Event Directory</h3>
       <hr>
+      <!-- Add a Button-->
+      <a th:href="@{/events/showFormAddEvent}"
+        class="btn btn-primary btn-sm mb-3">Créer un évènement</a>
       <table class="table table-bordered table-striped">
         <thead class="table-dark">
           <tr>
@@ -27,6 +30,7 @@
           <tr th:each="events : ${listEvents}">
             <td th:text="${events.id}"></td>
             <td th:text="${events.titre}"></td>
+            <td th:text="${events.eventDate}"></td>
             <td th:text="${events.heureDebut}"></td>
             <td th:text="${events.heureFin}"></td>
             <td th:text="${events.lieu}"></td>

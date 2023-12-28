@@ -4,9 +4,11 @@ import com.projet.agenda.model.Event;
 import com.projet.agenda.service.EventService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -25,4 +27,17 @@ public class EventController {
         return "/events/list-events";
     }
 
+    @GetMapping("/showFormAddEvent")
+    public String showFormAddEvent(Model model){
+        //create model attribute to bind form data
+        Event event = new Event();
+        model.addAttribute("event", event);
+        return "/events/event-form";
+    }
+
+    @PostMapping("/saveEvent")
+    public String saveEvent(@ModelAttribute("event") Event event) {
+        eventService.ajouterEvent(event);
+        return "redirect:/events/list"; // Redirect to home page or another URL
+    }
 }

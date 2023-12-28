@@ -1,13 +1,18 @@
 package com.projet.agenda.service;
 
 import com.projet.agenda.model.Event;
+import com.projet.agenda.model.User;
 import com.projet.agenda.repos.EventRepository;
 import com.projet.agenda.repos.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +25,11 @@ public class EventService {
     @Autowired
     private UserRepository userRepo;
 
+    public EventService() throws ParseException {
+    }
+
     //method to create event
-    Event saveEvent(Event event) {
+    public Event saveEvent(Event event) {
         return eventRepo.save(event);
     }
 
@@ -65,7 +73,7 @@ public class EventService {
     }
 
     //Find event by DateRange
-    public List<Event> findByHeureDebutBetween(LocalDateTime heureDebut, LocalDateTime heureFin){
+    public List<Event> findByHeureDebutBetween(LocalTime heureDebut, LocalTime heureFin){
         return eventRepo.findByHeureDebutBetween(heureDebut, heureFin);
     }
 
@@ -73,5 +81,19 @@ public class EventService {
     public List<Event> findAllEvents(){
         return eventRepo.findAllEvents();
     }
+
+    //save event
+    public Event ajouterEvent(Event event ){
+        return eventRepo.save(event);
+    }
+
+    public List<Event> getAllEvents(){return  eventRepo.findAllEvents();}
+
+
+    // Assuming you're receiving a date string from user input
+    String dateStringFromUser = "2023-12-25";
+
+
+
 
 }
