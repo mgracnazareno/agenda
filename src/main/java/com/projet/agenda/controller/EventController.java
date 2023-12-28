@@ -53,4 +53,12 @@ public class EventController {
         eventService.ajouterEvent(event);
         return "redirect:/events/list"; // Redirect to home page or another URL
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("eventId") Integer id){
+        //delete event
+        eventService.deleteEventById(id);
+        //redirect to the events/list
+        return "redirect:/events/list";
+    }
 }

@@ -2,13 +2,12 @@ package com.projet.agenda.repos;
 
 import com.projet.agenda.model.Event;
 import com.projet.agenda.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +17,7 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
 
     //a method that search the creator of an Event
     @Query("SELECT e.createdBy FROM Event e WHERE e.id= :id")
-    public User findCreatorEvents(@Param("id") Integer id);
+    User findCreatorEvents(@Param("id") Integer id);
 
     @Query("SELECT e FROM Event e")
     public List<Event> findAllEvents();
