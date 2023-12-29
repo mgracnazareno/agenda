@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrateur</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        form {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Panel Administrateur</h1>
+
+    <!-- Gérer la base de données des utilisateurs et des évènements -->
+    <section>
+        <h2>Gestion de la base de données</h2>
+        <button onclick="gererUtilisateurs()">Gérer Utilisateurs</button>
+        <button onclick="gererEvenements()">Gérer Évènements</button>
+    </section>
+
+    <!-- Modifier et supprimer des comptes et des évènements -->
+    <section>
+        <h2>Modifier et Supprimer</h2>
+        <button onclick="modifierComptes()">Modifier Comptes</button>
+        <button onclick="supprimerComptes()">Supprimer Comptes</button>
+        <button onclick="modifierEvenements()">Modifier Évènements</button>
+        <button onclick="supprimerEvenements()">Supprimer Évènements</button>
+    </section>
+
+    <!-- Gérer les signalements faits par les utilisateurs -->
+    <section>
+        <h2>Gestion des Signalements</h2>
+        <button onclick="gererSignalements()">Gérer Signalements</button>
+    </section>
+
+    <!-- Ajouter/modifier/supprimer un évènement -->
+    <section>
+        <h2>Évènements</h2>
+        <button onclick="ajouterEvenement()">Ajouter Évènement</button>
+        <button onclick="modifierEvenement()">Modifier Évènement</button>
+        <button onclick="supprimerEvenement()">Supprimer Évènement</button>
+    </section>
+
+    <!-- Ajouter/modifier/supprimer un utilisateur -->
+    <section>
+        <h2>Utilisateurs</h2>
+        <button onclick="ajouterUtilisateur()">Ajouter Utilisateur</button>
+        <button onclick="modifierUtilisateur()">Modifier Utilisateur</button>
+        <button onclick="supprimerUtilisateur()">Supprimer Utilisateur</button>
+    </section>
+
+    <!-- Afficher l’ensemble des événements et les utilisateurs associés -->
+    <section>
+        <h2>Liste des Évènements et Utilisateurs</h2>
+        <button onclick="afficherEvenements()">Afficher Évènements</button>
+        <button onclick="afficherUtilisateurs()">Afficher Utilisateurs</button>
+    </section>
+
+    <!-- Effectuer une recherche simple ou avancée -->
+    <section>
+        <h2>Recherche</h2>
+        <form action="recherche.php" method="post">
+            <label for="critere">Critère de recherche:</label>
+            <input type="text" id="critere" name="critere">
+            <button type="submit">Rechercher</button>
+        </form>
+    </section>
+
+    <!-- Ajouter un chat pour l’entreprise et les candidats -->
+    <section>
+        <h2>Chat</h2>
+        <!-- Ajoutez ici le code pour intégrer un chat -->
+    </section>
+
+    <script>
+        // Ajoutez vos scripts JavaScript ici
+
+        function gererUtilisateurs() {
+            // Code pour gérer la base de données des utilisateurs
+            console.log("Gérer Utilisateurs");
+        }
+
+        function gererEvenements() {
+            // Code pour gérer la base de données des évènements
+            console.log("Gérer Évènements");
+        }
+
+        function modifierComptes() {
+            // Code pour modifier des comptes
+            console.log("Modifier Comptes");
+        }
+
+        function supprimerComptes() {
+            // Code pour supprimer des comptes
+            console.log("Supprimer Comptes");
+        }
+
+        function modifierEvenements() {
+            // Code pour modifier des évènements
+            console.log("Modifier Évènements");
+        }
+
+        function supprimerEvenements() {
+            // Code pour supprimer des évènements
+            console.log("Supprimer Évènements");
+        }
+
+        function gererSignalements() {
+            // Code pour gérer les signalements
+            console.log("Gérer Signalements");
+        }
+
+        function ajouterEvenement() {
+            // Code pour ajouter un évènement
+            console.log("Ajouter Évènement");
+        }
+
+        function modifierEvenement() {
+            // Code pour modifier un évènement
+            console.log("Modifier Évènement");
+        }
+
+        function supprimerEvenement() {
+            // Code pour supprimer un évènement
+            console.log("Supprimer Évènement");
+        }
+
+        function ajouterUtilisateur() {
+            // Code pour ajouter un utilisateur
+            console.log("Ajouter Utilisateur");
+        }
+
+        function modifierUtilisateur() {
+            // Code pour modifier un utilisateur
+            console.log("Modifier Utilisateur");
+        }
+
+        function supprimerUtilisateur() {
+            // Code pour supprimer un utilisateur
+            console.log("Supprimer Utilisateur");
+        }
+
+        function afficherEvenements() {
+            // Code pour afficher la liste des évènements
+            console.log("Afficher Évènements");
+        }
+
+        function afficherUtilisateurs() {
+            // Code pour afficher la liste des utilisateurs
+            console.log("Afficher Utilisateurs");
+        }
+    </script>
+
+</body>
+</html>

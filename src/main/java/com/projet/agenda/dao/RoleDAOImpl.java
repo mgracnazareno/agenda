@@ -1,7 +1,6 @@
 package com.projet.agenda.dao;
 
-import com.projet.agenda.model.Role;
-import com.projet.agenda.model.User;
+import com.projet.agenda.model.Authorities;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class RoleDAOImpl implements RoleDAO{
     //implement save method
     @Override
     @Transactional
-    public void save(Role role){
-        entityManager.persist(role);
+    public void save(Authorities authorities){
+        entityManager.persist(authorities);
     }
 }

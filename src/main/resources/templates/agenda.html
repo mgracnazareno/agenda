@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/style.css">
+  <title>Miami-Huto Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #3b3a3a;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #676c70;
+      color: #fff;
+    }
+
+    #logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    #nav {
+      display: flex;
+      align-items: center;
+    }
+
+    #nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+
+    #cld {
+      background-color: #055531;
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #enteteCld {
+      text-align: center;
+    }
+
+    #cldt {
+      color: #333;
+    }
+
+    #avantEtApres {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .cldBtn {
+      background-color: #56585b;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .cldBtn:hover {
+      background-color: #5f6062;
+    }
+
+    #cldBoite {
+      margin-top: 20px;
+    }
+
+    #jours {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .jour {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .semaine {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .case {
+      flex: 1;
+      height: 50px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .selected {
+      background-color: #6a6c6f;
+      color: #fff;
+    }
+
+    #dateSelector {
+      margin-right: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div id="logo"><h1> ELSA</h1></div>
+    <nav id="nav">
+      <a href="home.html">Home</a>
+      <a href="choisir.html">Creer un compte</a>
+    
+      <a href="SeConecter .html">Se connecter</a>
+    </nav>
+  </header>
+
+  <section id="cld">
+    <section id="enteteCld">
+      <h1 id="cldt">January 2023</h1>
+    </section>
+    <section id="avantEtApres">
+      <button id="avant" class="cldBtn">&lt;</button>
+      <button id="apres" class="cldBtn">&gt;</button>
+      <form id="dateSelector">
+        <label for="year">Year:</label>
+        <input type="number" id="year" min="1900" max="2100" value="2023">
+        <label for="month">Month:</label>
+        <input type="number" id="month" min="1" max="12" value="1">
+        <label for="day">Day:</label>
+        <input type="number" id="day" min="1" max="31" value="1">
+        <button type="button" id="applyDate" class="cldBtn">Apply</button>
+      </form>
+    </section>
+    <section id="cldBoite">
+      <div id="jours">
+        <div class="jour">Mon</div>
+        <div class="jour">Tue</div>
+        <div class="jour">Wed</div>
+        <div class="jour">Thu</div>
+        <div class="jour">Fri</div>
+        <div class="jour">Sat</div>
+        <div class="jour">Sun</div>
+      </div>
+
+      <div id="semaine1" class="semaine">
+        <div id="jours">
+          <div class="jour">Mon</div>
+          <div class="jour">Tue</div>
+          <div class="jour">Wed</div>
+          <div class="jour">Thu</div>
+          <div class="jour">Fri</div>
+          <div class="jour">Sat</div>
+          <div class="jour">Sun</div>
+        </div>
+      </div>
+
+      <div id="semaine2" class="semaine">
+        <div id="jours">
+          <div class="jour">Mon</div>
+          <div class="jour">Tue</div>
+          <div class="jour">Wed</div>
+          <div class="jour">Thu</div>
+          <div class="jour">Fri</div>
+          <div class="jour">Sat</div>
+          <div class="jour">Sun</div>
+        </div>
+      </div>
+
+      <div id="semaine3" class="semaine">
+        <div id="jours">
+          <div class="jour">Mon</div>
+          <div class="jour">Tue</div>
+          <div class="jour">Wed</div>
+          <div class="jour">Thu</div>
+          <div class="jour">Fri</div>
+          <div class="jour">Sat</div>
+          <div class="jour">Sun</div>
+        </div>
+      </div>
+
+      <div id="semaine4" class="semaine">
+        <div id="jours">
+          <div class="jour">Mon</div>
+          <div class="jour">Tue</div>
+          <div class="jour">Wed</div>
+          <div class="jour">Thu</div>
+          <div class="jour">Fri</div>
+          <div class="jour">Sat</div>
+          <div class="jour">Sun</div>
+        </div>
+      </div>
+      
+    </section>
+  </section>
+  <script>
+    
+    let monthIndex = 0;
+    let year = new Date().getFullYear();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    function updateCalendar() {
+      const currentMonth = months[monthIndex];
+      document.getElementById('cldt').innerText = `${currentMonth} ${year}`;
+
+      const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
+      const totalDays = daysInMonth[monthIndex];
+
+      const cldBoite = document.getElementById('cldBoite');
+      cldBoite.innerHTML = '';
+
+      let semaineDiv;
+      for (let i = 0; i < totalDays; i++) {
+        if (i % 7 === 0) {
+          semaineDiv = document.createElement('div');
+          semaineDiv.className = 'semaine';
+          cldBoite.appendChild(semaineDiv);
+        }
+
+        const jour = document.createElement('div');
+        jour.className = 'case';
+        jour.innerText = i + 1;
+        jour.addEventListener('click', () => selectDate(i ));
+        semaineDiv.appendChild(jour);
+      }
+
+      const joursElements = document.querySelectorAll('.case');
+      joursElements[firstDayOfMonth].classList.add('selected');
+    }
+
+    function changeMonth(direction) {
+      if (direction === 'next') {
+        monthIndex = (monthIndex + 1) % 12;
+        if (monthIndex === 0) {
+          year++;
+        }
+      } else {
+        monthIndex = (monthIndex - 1 + 12) % 12;
+        if (monthIndex === 11) {
+          year--;
+        }
+      }
+
+      updateCalendar();
+    }
+
+    function applyDate() {
+      const selectedYear = parseInt(document.getElementById('year').value);
+      const selectedMonth = parseInt(document.getElementById('month').value) - 1; // Adjust for 0-based index
+      const selectedDay = parseInt(document.getElementById('day').value);
+
+      if (!isNaN(selectedYear) && !isNaN(selectedMonth) && !isNaN(selectedDay)) {
+        year = selectedYear;
+        monthIndex = selectedMonth;
+
+        // Check if the selected day is within the range of the selected month
+        if (selectedDay >= 1 && selectedDay <= daysInMonth[monthIndex]) {
+          updateCalendar();
+          const joursElements = document.querySelectorAll('.case');
+          joursElements[selectedDay + new Date(year, monthIndex, 1).getDay() - 1].classList.add('selected');
+        }
+      }
+    }
+
+    function selectDate(selectedDay) {
+      // Ajoutez ici le traitement pour la date sélectionnée (par exemple, affichez-la dans la console)
+      console.log(`Selected Day: ${selectedDay} ${months[monthIndex]} ${year}`);
+      const joursElements = document.querySelectorAll('.case');
+      joursElements.forEach(jourElement => jourElement.classList.remove('selected'));
+      joursElements[selectedDay + new Date(year, monthIndex, 1).getDay() ].classList.add('selected');
+    }
+
+    document.getElementById('avant').addEventListener('click', () => changeMonth('prev'));
+    document.getElementById('apres').addEventListener('click', () => changeMonth('next'));
+    document.getElementById('applyDate').addEventListener('click', applyDate);
+
+    // Initialisez le calendrier au chargement de la page
+    updateCalendar();
+  </script>
+</body>
+
+</html>

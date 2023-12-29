@@ -39,4 +39,5 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     List<Event> findByHeureDebutBetween(LocalTime heureDebut, LocalTime heureFin);
 
 
+    List<Event> findAllByTitreContaining(String keyword);
 }

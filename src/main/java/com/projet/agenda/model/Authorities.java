@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 @Entity
-@Table(name="role")
-public class Role {
+@Table(name="authorities")
+public class Authorities {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +18,13 @@ public class Role {
     @Column(length=150, nullable = false)
     private String description;
 
-    public Role() {}
+    public Authorities() {}
 
-    public Role(String nom, String description) {
+    public Authorities(String nom, String description) {
         this.nom = nom;
         this.description = description;
     }
-    public Role(int id, String nom, String description) {
+    public Authorities(int id, String nom, String description) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -56,7 +56,7 @@ public class Role {
 
     @Override
     public String toString() {
-        // return "Role{" + "nom=" + nom + '}';
+        // return "Authorities{" + "nom=" + nom + '}';
         return this.nom;
     }
 
@@ -78,7 +78,7 @@ public class Role {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Role other = (Role) obj;
+        final Authorities other = (Authorities) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

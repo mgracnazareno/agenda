@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    
+    <style>
+        body {
+           
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:  #4caf50;
+           
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+       
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: #ff0000;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 16px;
+            color: #333;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inscription</h1>
+        <!-- Le formulaire d'inscription -->
+        <form action="/inscription" method="post" autocomplete="off">
+            <!-- Ajoutez les champs nécessaires pour l'inscription -->
+            <label for="companyName">Nom de l'entreprise:</label>
+            <input type="text" id="companyName" name="companyName" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="example@example.com" required>
+            <p id="email-error" class="error-message"></p>
+
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+            <p id="password-error" class="error-message"></p>
+
+            <label for="confirmPassword">Confirmer le mot de passe:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <p id="confirmPassword-error" class="error-message"></p>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+        <!-- Lien vers la page de connexion -->
+        
+    </div>
+
+    <script>
+        // Ajout de la vérification de correspondance des mots de passe
+        document.querySelector("form").addEventListener("submit", function(event) {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            
+            // Validation de l'adresse e-mail
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                event.preventDefault(); // Empêcher la soumission du formulaire
+                document.getElementById("email-error").innerHTML = "Veuillez saisir une adresse e-mail valide.";
+            }
+
+            // Validation de la force du mot de passe (au moins 8 caractères, une majuscule, une minuscule et un chiffre)
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                event.preventDefault(); // Empêcher la soumission du formulaire
+                document.getElementById("password-error").innerHTML = "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre.";
+            }
+
+            // Validation de la correspondance des mots de passe
+            if (password !== confirmPassword) {
+                event.preventDefault(); // Empêcher la soumission du formulaire
+                document.getElementById("confirmPassword-error").innerHTML = "Les mots de passe ne correspondent pas.";
+            }
+        });
+    </script>
+</body>
+</html>

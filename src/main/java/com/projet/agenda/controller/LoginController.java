@@ -2,7 +2,6 @@ package com.projet.agenda.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
@@ -21,5 +20,17 @@ public class LoginController {
     //add request mapping for admin
     @GetMapping("/systems")
     public String showSystems(){ return "/systems";}
+
+
+    //add request mapping for access-denied
+    @GetMapping("/access-denied")
+    public String showAccessDenied(){
+        return "/access-denied";
+    }
+
+    @GetMapping("/inscription")
+    public String showSignUp(){
+        return "inscription";
+    }
 
 }

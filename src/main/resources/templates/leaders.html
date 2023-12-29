@@ -6,13 +6,113 @@
     <title>Page for Entrepreneurs</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Entrepreneurs Profile</h2>
-        <hr>
-        <p> Entrepreneurs can manipulate events related to its id</p>
-        <hr>
-        <a th:href="@{/}">Back to Home Page</a>
+<!--Profile Side Bar-->
+<div class="container-fluid main">
+    <div class="row flex-nowrap">
+        <div class="sidebar col-auto col-md-2 min-vh-100">
+            <div class="bg-dark p-2">
+                <a href="" class="d-flex text-decoration-none mt-1 align-items-center text-white">
+                    <span class="fs-4 d-none d-sm-inline">Entpreneur</span>
+                </a>
+                <ul class="nav nav-pills flex-column mt-4">
 
+                    <li class="nav-item">
+                        <a th:href="@{./acc}" class="nav-link text-white">
+                            <i class="fs-6 fa-solid fa-house"></i>
+                            <span class="fs-6 ms-2 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{./profil}" class="nav-link text-white">
+                            <i class="fs-6 fa-solid fa-user"></i>
+                            <span class="fs-6 ms-2 d-none d-sm-inline">Utilisateurs</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a th:href="@{./list-event}" class="nav-link text-white">
+                            <i class="fs-6 fa-solid fa-calendar-days"></i>
+                            <span class="fs-6 ms-2 d-none d-sm-inline">Events</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link text-white">
+                            <i class="fs-6 fa-solid fa-bell"></i>
+                            <span class="fs-6 ms-2 d-none d-sm-inline">Manage Events</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">
+                            <i class="fs-6 fa-solid fa-comment"></i>
+                            <span class="fs-6 ms-2 d-none d-sm-inline">Comments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">
+                            <i class="fs-6 fa-solid fa-right-from-bracket"></i>
+                            <span class="fs-6 ms-2 d-none d-sm-inline">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- End of Profile Side Bar-->
     </div>
+</div>
+<div class="container">
+    <h3>Event Directory</h3>
+    <hr>
+    <!-- Add a Button-->
+    <a th:href="@{/events/showFormAddEvent}"
+       class="btn btn-primary btn-sm mb-3">Créer un évènement</a>
+
+    <!-- Search an event-->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Heure de Debut</th>
+            <th>Heure de fin</th>
+            <th>Lieu</th>
+            <th>Commentaire</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="events : ${listEvents}">
+            <td th:text="${events.id}"></td>
+            <td th:text="${events.titre}"></td>
+            <td th:text="${events.eventDate}"></td>
+            <td th:text="${events.heureDebut}"></td>
+            <td th:text="${events.heureFin}"></td>
+            <td th:text="${events.lieu}"></td>
+            <td th:text="${events.commentaire}"></td>
+            <!--Add update button Link-->
+            <td>
+                <a th:href="@{/events/showFormForUpdate(eventId=${events.id})}"
+                   class="btn btn-info btn-sm">Update</a>
+
+                <!-- Add delete button link-->
+                <a th:href="@{/events/delete(eventId=${events.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if(!(confirm('Veuillez vous supprimer cet id?'))) return false">Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--    <div class="container">-->
+<!--        <h2>Entrepreneurs Profile</h2>-->
+<!--        <hr>-->
+<!--        <p> Entrepreneurs can manipulate events related to its id</p>-->
+<!--        <hr>-->
+<!--        <a th:href="@{/}">Back to Home Page</a>-->
+
+<!--    </div>-->
 </body>
 </html>

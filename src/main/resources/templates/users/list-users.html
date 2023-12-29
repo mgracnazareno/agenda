@@ -50,7 +50,7 @@
                    <td th:text="${users.photo}"></td>
                    <td th:text="${users.email}"></td>
                    <td th:text="${users.active}"></td>
-                   <th th:text="${users.roles}"></th>
+                   <th th:text="${users.authorities}"></th>
                    <!--Add update button link-->
                    <td>
                        <a th:href="@{/users/showFormForUpdate(userId=${users.id})}"

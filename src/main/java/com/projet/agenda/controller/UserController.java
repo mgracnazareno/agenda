@@ -1,10 +1,9 @@
 package com.projet.agenda.controller;
 
-import com.projet.agenda.model.Role;
+import com.projet.agenda.model.Authorities;
 import com.projet.agenda.model.User;
 import com.projet.agenda.service.UserNotFoundException;
 import com.projet.agenda.service.UserService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +35,10 @@ public class UserController {
     public String showFormForAdd(Model model){
         //create the model attribute to bind form data
         User user = new User();
-        user.setActive(true);
+        user.setEnabled(true);
         model.addAttribute("user", user);
-        List<Role> listeRole = userService.afficherRoles();
-        model.addAttribute("listeRole", listeRole);
+        List<Authorities> listeAuthorities = userService.afficherRoles();
+        model.addAttribute("listeRole", listeAuthorities);
         return "/users/user-form";
     }
 
@@ -50,7 +49,6 @@ public class UserController {
         //set the user in the model to prepopulate the form
         model.addAttribute("user", user);
         //send over to the form
-
         return "/users/user-form";
     }
     @GetMapping("/delete")

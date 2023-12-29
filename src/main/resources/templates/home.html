@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>ELSA</title>
 </head>
 <style>
@@ -51,7 +52,6 @@
         width: 50%;
         float: left;
     }
-
 
 
     .box3 {
@@ -102,12 +102,13 @@
     .box11:hover, .box12:hover, .box13:hover, .box14:hover, .box15:hover, .box16:hover {
         background-color: #969090;
     }
+
     .box3 a:hover {
         background-color: #969090;
 
     }
 
-    .text-white{
+    .text-white {
         color: #f2f2f2;
     }
 </style>
@@ -118,34 +119,34 @@
 </header>
 <nav>
 
-    <a class="logo" th:src="@{./image/box33.jpg}" ><h1> ELSA </h1></a>
+    <a class="logo" th:src="@{./image/box33.jpg}"><h1> ELSA </h1></a>
     <a th:href="@{'/inscription'}">Se connecter/ S'inscrire</a>
     <a th:href="@{'/agenda'}">Agenda</a>
     <a th:href="@{'/contact'}">Nous Contacter</a>
     <a th:href="@{'/propos'}">À propos de nos</a>
-<!--    <div th:if="${#authorization.expression('isAuthenticated()')}" class="text-white">-->
-<!--            <span th:text=" ${#authentication.principal.username}"> </span>-->
-<!--            <br>-->
-<!--            Role(s): <span th:text="${#authentication.principal.authorities}"></span>-->
-<!--    </div>-->
+
 
     <div th:if="${#authorization.expression('isAuthenticated()')}">
         <span sec:authentication="principal.username" class="text-white"> </span>
         <br>
-      <span sec:authentication="principal.authorities" class="text-white"></span>
+        <span sec:authentication="principal.authorities" class="text-white"></span>
     </div>
     <hr>
 
-    <!-- Add a link to the point /entrepreneurs -->
-    <p>
-        <a th:href="@{/leaders}"> Entrepreneur</a>
-    </p>
+    <div sec:authorize="hasRole('ENTREPRENEUR')">
+        <!-- Add a link to the point /entrepreneurs -->
+        <p>
+            <a th:href="@{/users/list}"> Entrepreneur</a>
+        </p>
+    </div>
 
-    <!-- Add al link to point to /systems ... this is for admin-->
-    <p>
-        <a th:href="@{/systems}"> Admin</a>
-<!--        <p>(Only for Admin )</p>-->
-    </p>
+    <div sec:authorize="hasRole('ADMIN')">
+        <!-- Add al link to point to /systems ... this is for admin-->
+        <p>
+            <a th:href="@{/systems}"> Admin</a>
+        </p>
+    </div>
+
     <!--Add a logout button -->
     <form th:action="@{/logout}" method="POST">
         <input type="submit" value="Logout">
@@ -154,9 +155,9 @@
 </nav>
 
 <section>
-    <div class="box1"> <h1>Adieu aux rendez-vous oubliés </h1>
+    <div class="box1"><h1>Adieu aux rendez-vous oubliés </h1>
 
-        <img th:src="@{/image/box110.png}" alt="photo" width="400" />
+        <img th:src="@{/image/box110.png}" alt="photo" width="400"/>
         <br>
 
         <p>"Osez le changement ! Passez à l'efficacité numérique
@@ -165,32 +166,57 @@
         </p>
     </div>
 
-    <div class="box3"> <img th:src="@{/image/box33.jpg}" alt="photo" width="350">
+    <div class="box3"><img th:src="@{/image/box33.jpg}" alt="photo" width="350">
         <br>
-        <a th:href="@{'/agenda'}" > <ion-icon name="calendar"></ion-icon>    Agenda enligne</a>
+        <a th:href="@{'/agenda'}">
+            <ion-icon name="calendar"></ion-icon>
+            Agenda enligne</a>
         <br>
-        <a th:href="@{'#'}"> <ion-icon name="create"></ion-icon>   creation d'un evenement</a>
+        <a th:href="@{'/users/list'}">
+            <ion-icon name="create"></ion-icon>
+            creation d'un evenement</a>
         <br>
-        <a th:href="@{'#'}"><ion-icon name="mail"></ion-icon>     notification</a>
+        <a th:href="@{'#'}">
+            <ion-icon name="mail"></ion-icon>
+            notification</a>
         <br>
-        <a th:href="@{'/profile'}"> <ion-icon name="person-circle"></ion-icon>   espace personel </a>
+        <a th:href="@{'/profile'}">
+            <ion-icon name="person-circle"></ion-icon>
+            espace personel </a>
 
     </div>
     <div class="box4">
 
-        <a th:href="@{'#'}"><div class="box11"><h5>Construction & Renovation</h5><img th:src="@{/image/box11-1-mantenance.bmp }" alt="photo" width="50"> </div></a>
-        <a th:href="@{'#'}"><div class="box12"><h5>Shop</h5> <img th:src="@{/image/box12shop.bmp}" alt="photo" width="50"> </div></a>
-        <a th:href="@{'#'}"><div class="box13"> <h5>Technique auto</h5><img th:src="@{/image/box13-car-locomotive.bmp}" alt="photo" width="50"></div></a>
-        <a th:href="@{'#'}"><div class="box14"><h5>Sante bien etre</h5> <img th:src="@{/image/box14helth-medical.bmp}" alt="photo" width="50"> </div></a>
-        <a th:href="@{'#'}"><div class="box15"><h5>restauration</h5> <img th:src="@{/image/box15-restauration.bmp}" alt="photo" width="50"> </div></a>
-        <a th:href="@{'#'}"> <div class="box16"> <h5>veterinaire</h5><img th:src="@{/image/box16-veterinaire.bmp}" alt="photo" width="50"> </div></a>
+        <a th:href="@{'#'}">
+            <div class="box11"><h5>Construction & Renovation</h5><img th:src="@{/image/box11-1-mantenance.bmp }"
+                                                                      alt="photo" width="50"></div>
+        </a>
+        <a th:href="@{'#'}">
+            <div class="box12"><h5>Shop</h5> <img th:src="@{/image/box12shop.bmp}" alt="photo" width="50"></div>
+        </a>
+        <a th:href="@{'#'}">
+            <div class="box13"><h5>Technique auto</h5><img th:src="@{/image/box13-car-locomotive.bmp}" alt="photo"
+                                                           width="50"></div>
+        </a>
+        <a th:href="@{'#'}">
+            <div class="box14"><h5>Sante bien etre</h5> <img th:src="@{/image/box14helth-medical.bmp}" alt="photo"
+                                                             width="50"></div>
+        </a>
+        <a th:href="@{'#'}">
+            <div class="box15"><h5>restauration</h5> <img th:src="@{/image/box15-restauration.bmp}" alt="photo"
+                                                          width="50"></div>
+        </a>
+        <a th:href="@{'#'}">
+            <div class="box16"><h5>veterinaire</h5><img th:src="@{/image/box16-veterinaire.bmp}" alt="photo" width="50">
+            </div>
+        </a>
 
     </div>
     <div class="box5">
         <p>Trouvez la magie dans chaque solution pour vos activités</p>
-        <img th:src="@{/image/box5.jpg}" alt="photo" >
-    <div>
-    </div>
+        <img th:src="@{/image/box5.jpg}" alt="photo">
+        <div>
+        </div>
     </div>
 </section>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-nous</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #4caf50;
+          
+            align-items: center;
+            justify-content: center;
+           
+        }
+
+        header {
+            
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+     <script>
+        function validerFormulaire() {
+            // Validation de l'adresse e-mail
+            var email = document.getElementById('email').value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Validation du numéro de téléphone
+            var telephone = document.getElementById('telephone').value;
+            var telephoneRegex = /^\d{10}$/;
+
+            if (!emailRegex.test(email)) {
+                alert('Veuillez entrer une adresse e-mail valide.');
+                return false;
+            }
+
+            if (!telephoneRegex.test(telephone)) {
+                alert('Veuillez entrer un numéro de téléphone valide (10 chiffres sans espaces ni caractères spéciaux).');
+                return false;
+            }
+
+            // Le formulaire est valide, vous pouvez ajouter ici le code pour envoyer le formulaire
+            // ou le traiter d'une autre manière selon vos besoins.
+            alert('Formulaire envoyé avec succès!');
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Contactez-nous</h1>
+    </header>
+    <main>
+        <p>Bienvenue sur notre page de contact. Nous sommes ravis de pouvoir vous aider. Merci de nous laisser vos coordonnées et un commentaire sur vos besoins ou préoccupations.</p>
+        
+        <form action="mailto:votre_adresse_email@example.com" method="post" enctype="text/plain">
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telephone">Numéro de téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required>
+
+            <label for="commentaire">Commentaire :</label>
+            <textarea id="commentaire" name="commentaire" rows="4" required></textarea>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </main>
+</body>
+</html>

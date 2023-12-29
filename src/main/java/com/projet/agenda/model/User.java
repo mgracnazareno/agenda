@@ -2,13 +2,11 @@ package com.projet.agenda.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 
     @Id
@@ -25,7 +23,27 @@ public class User {
     @Column(length = 64, nullable = false)
     private String prenom;
     private String photo;
-    private boolean active;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Column(unique = true, nullable = false, length=150)
+    private String username;
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    private boolean enabled;
 
     //association
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, fetch =FetchType.LAZY)
@@ -33,13 +51,17 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id")
+            name = "users_authorities",
+            joinColumns = @JoinColumn(name="users_id"),
+            inverseJoinColumns = @JoinColumn(name="authorities_id")
 
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<Authorities> authorities = new HashSet<>();
 
+
+    @ManyToOne
+    @JoinColumn(name="admin_id")
+    private Admin admin;
     public User(){}
 
     public User(String nom, String prenom, String email, String password){
@@ -55,15 +77,15 @@ public class User {
         this.email = email;
     }
 
-    public User(int id, String email, boolean active, String nom, String prenom, String password, String photo) {
+    public User(int id, String email, boolean enabled, String nom, String prenom, String password, String photo) {
         this.id = id;
         this.email = email;
-        this.active= active;
         this.nom = nom;
+        this.enabled = enabled;
         this.prenom = prenom;
         this.password = password;
         this.photo = photo;
-        roles = new HashSet();
+        authorities = new HashSet();
     }
 
 
@@ -115,20 +137,15 @@ public class User {
         this.photo = photo;
     }
 
-    public boolean isActive() {
-        return active;
+
+
+
+    public Set<Authorities> getRoles() {
+        return authorities;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Set<Authorities> authorities) {
+        this.authorities = authorities;
     }
 
     public String afficherTitreDesColonnes() {
@@ -142,10 +159,11 @@ public class User {
     @Override
     public String toString() {
         String message = "";
-        message = String.format(" %-10d  %30s %15b %15s %15s %15s %25s ",this.id,this.email, this.active,this.nom,this.prenom,
+        message = String.format(" %-10d  %30s %15b %15s %15s %15s %25s ",this.id,this.email, this.enabled,this.nom,this.prenom,
                 this.password, this.photo);
         return message;
     }
+
 
     // Method to add an event created by the user
 

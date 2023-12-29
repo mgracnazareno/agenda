@@ -1,6 +1,6 @@
 package com.projet.agenda.service;
 
-import com.projet.agenda.model.Role;
+import com.projet.agenda.model.Authorities;
 import com.projet.agenda.model.User;
 import com.projet.agenda.repos.RoleRepository;
 import com.projet.agenda.repos.UserRepository;
@@ -23,8 +23,8 @@ public class UserService {
         return (List<User>) repo.findAllByOrderByNomAsc();
     }
 
-    public List<Role>afficherRoles(){
-        return (List<Role>) roleRepos.findAll();
+    public List<Authorities>afficherRoles(){
+        return (List<Authorities>) roleRepos.findAll();
     }
 
     public User ajouterUser(User user ){
@@ -61,4 +61,9 @@ public class UserService {
     public List<User> searchUsers(String prenom, String nom) {
         return repo.findByPrenomContainingIgnoreCaseAndNomContainingIgnoreCase(prenom, nom);
     }
+
+    public User getUserByUsername(String username) {
+        return repo.getUserByEmail(username);
+    }
+
 }

@@ -44,6 +44,10 @@ public class Event {
     //Reference to the user who created the event
     private User createdBy;
 
+    @ManyToOne
+    @JoinColumn(name = "admin_id") // Use @JoinColumn to specify the foreign key column name
+    private Admin admin;
+
     public Event(){}
 
     public Event(String titre, LocalTime heureDebut, LocalTime heureFin, String lieu, String commentaire){

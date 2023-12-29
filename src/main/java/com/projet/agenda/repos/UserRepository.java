@@ -18,15 +18,12 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     public User getUserByEmailAndPassword(@Param("email")String email, @Param("password")String password);
 
     public Long countById(Integer id);
-    @Query("UPDATE User  u SET u.active= ?2 WHERE u.id = ?1")
+    @Query("UPDATE User u SET u.enabled= ?2 WHERE u.id = ?1")
     @Modifying
-    public void updateActiveStatus(Integer id, boolean active);
+    public void updateActiveStatus(Integer id, boolean enabled);
 
     @Query("SELECT u FROM User u where u.nom LIKE %?1% OR u.prenom LIKE %?1%")
     public List<User> findAll(String keyword);
-
-    @Query("SELECT u FROM User u join u.roles r WHERE r.nom = ?1")
-    public List<User> findAllByRolesNom(String nom);
 
     //a method that sorts by last name
     @Query("SELECT u FROM User u ORDER BY u.nom ASC")
@@ -44,7 +41,10 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     List<User> findByPrenomContainingIgnoreCaseAndNomContainingIgnoreCase(String prenom, String nom);
 
-     @Query("SELECT u FROM User u JOIN u.roles r WHERE r.nom =?1")
-    public List<User> findAllByNomAndRoles(String nom);
+
+
+    @Query("select u from User u JOIN u.authorities a where a.nom = :nom")
+    public List<User> findAllByNomAndAuthorities(@Param("nom") String nom);
+
 
 }
